@@ -8,18 +8,18 @@ const reset = () => {
   outputDiv.textContent = "";
 };
 
-/* const convertToRoman = () => {
-  // setTimeout to be executed 10 sec after converttoroman
-    setTimeout(reset, 10000);
-}; */
 const validateInput = (inputValue, intValue) => {
   if (inputValue === "") {
     outputDiv.textContent = "Please enter a valid number";
+    return false;
   } else if (intValue === -1 || isNaN(intValue) || intValue < 1) {
     outputDiv.textContent = "Please enter a number greater than or equal to 1";
+    return false;
   } else if (intValue >= 4000) {
     outputDiv.textContent = "Please enter a number less than or equal to 3999";
+    return false;
   }
+  return true; // validation passed
 };
 
 convertBtn.addEventListener("click", () => {
@@ -138,6 +138,6 @@ convertBtn.addEventListener("click", () => {
 // Enter = convertToButton
 userInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    convertToRoman;
+    convertToRoman();
   }
 });
