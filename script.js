@@ -1,12 +1,7 @@
 const userInput = document.getElementById("number");
 const convertBtn = document.getElementById("convert-btn");
+const resetBtn = document.getElementById("reset-btn");
 const outputDiv = document.getElementById("output");
-
-// resets everything to null after x seconds => setTimeout inside function convert
-const reset = () => {
-  inputValue.textContent = "";
-  outputDiv.textContent = "";
-};
 
 const validInput = (inputValue, intValue) => {
   if (inputValue === "") {
@@ -24,9 +19,7 @@ const validInput = (inputValue, intValue) => {
 
 const convertToRoman = () => {
   const inputValue = userInput.value.trim(); // trim whitespace
-
-  // convert string to int using parseInt
-  const intValue = parseInt(inputValue);
+  const intValue = parseInt(inputValue); // convert string to int using parseInt
 
   if (!validInput(inputValue, intValue)) {
     return; //stops the running of function
@@ -137,9 +130,17 @@ const convertToRoman = () => {
   const romanDisplay = romanArr.reverse().join("");
   outputDiv.textContent = romanDisplay;
 };
+
+// manually resets everything to null when rest button is clicked
+const reset = () => {
+  userInput.textContent = "";
+  outputDiv.textContent = "";
+};
+
+resetBtn.addEventListener("click", reset);
+
 // convertBtn does something
 convertBtn.addEventListener("click", () => {
-  // validateInput();
   convertToRoman();
 });
 
