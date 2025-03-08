@@ -3,6 +3,14 @@ const convertBtn = document.getElementById("convert-btn");
 const resetBtn = document.getElementById("reset-btn");
 const outputDiv = document.getElementById("output");
 
+// manually resets everything to null when rest button is clicked
+const reset = () => {
+  userInput.value.textContent = "";
+  outputDiv.textContent = "";
+};
+
+let autoDisplayClear;
+
 const validInput = (inputValue, intValue) => {
   if (inputValue === "") {
     outputDiv.textContent = "Please enter a valid number";
@@ -18,6 +26,11 @@ const validInput = (inputValue, intValue) => {
 };
 
 const convertToRoman = () => {
+  clearTimeout(autoDisplayClear);
+  autoDisplayClear = setTimeout(() => {
+    reset();
+  }, 5000);
+
   const inputValue = userInput.value.trim(); // trim whitespace
   const intValue = parseInt(inputValue); // convert string to int using parseInt
 
@@ -129,17 +142,10 @@ const convertToRoman = () => {
   }
   const romanDisplay = romanArr.reverse().join("");
   outputDiv.textContent = romanDisplay;
-};
-
-// manually resets everything to null when rest button is clicked
-const reset = () => {
-  userInput.textContent = "";
-  outputDiv.textContent = "";
+  autoDisplayClear();
 };
 
 resetBtn.addEventListener("click", reset);
-
-// convertBtn does something
 convertBtn.addEventListener("click", () => {
   convertToRoman();
 });
