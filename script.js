@@ -8,7 +8,7 @@ const reset = () => {
   outputDiv.textContent = "";
 };
 
-const validateInput = (inputValue, intValue) => {
+const validInput = (inputValue, intValue) => {
   if (inputValue === "") {
     outputDiv.textContent = "Please enter a valid number";
     return false;
@@ -22,12 +22,15 @@ const validateInput = (inputValue, intValue) => {
   return true; // validation passed
 };
 
-convertBtn.addEventListener("click", () => {
-  validateInput();
+const convertToRoman = () => {
   const inputValue = userInput.value.trim(); // trim whitespace
 
   // convert string to int using parseInt
   const intValue = parseInt(inputValue);
+
+  if (!validInput(inputValue, intValue)) {
+    return; //stops the running of function
+  }
 
   const numeralArr = intValue.toString().split("").reverse();
   const romanArr = [];
@@ -133,6 +136,11 @@ convertBtn.addEventListener("click", () => {
   }
   const romanDisplay = romanArr.reverse().join("");
   outputDiv.textContent = romanDisplay;
+};
+// convertBtn does something
+convertBtn.addEventListener("click", () => {
+  // validateInput();
+  convertToRoman();
 });
 
 // Enter = convertToButton
