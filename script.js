@@ -3,13 +3,15 @@ const convertBtn = document.getElementById("convert-btn");
 const resetBtn = document.getElementById("reset-btn");
 const outputDiv = document.getElementById("output");
 
+resetBtn.style.visibility = "hidden";
+let autoDisplayClear;
+
 // manually resets everything to null when rest button is clicked
 const reset = () => {
   userInput.value.textContent = "";
   outputDiv.textContent = "";
+  resetBtn.style.visibility = "hidden";
 };
-
-let autoDisplayClear;
 
 const validInput = (inputValue, intValue) => {
   if (inputValue === "") {
@@ -30,6 +32,8 @@ const convertToRoman = () => {
   autoDisplayClear = setTimeout(() => {
     reset();
   }, 5000);
+
+  resetBtn.style.visibility = "visible";
 
   const inputValue = userInput.value.trim(); // trim whitespace
   const intValue = parseInt(inputValue); // convert string to int using parseInt
